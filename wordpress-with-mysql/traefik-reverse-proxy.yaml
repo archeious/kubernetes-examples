@@ -1,0 +1,20 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wordpress-igr
+  namespace: kubernetes-examples
+  annotations: 
+    kubernetes.io/ingress.class: traefik-external
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`wpblog.unbiasedgeek.com`)
+      kind: Rule
+      services:
+        - name: wp-service
+          namespace: kubernetes-examples
+          port: 80
+  tls:
+    secretName: blog-unbiasedgeek-com-production-tls

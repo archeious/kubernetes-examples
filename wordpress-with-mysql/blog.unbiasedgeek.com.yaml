@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: blog-unbiasedgeek-com-production
+  namespace: kubernetes-examples
+spec:
+  secretName: blog-unbiasedgeek-com-production-tls
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "blog.unbiasedgeek.com"
+  dnsNames:
+  - "blog.unbiasedgeek.com"
